@@ -1,26 +1,78 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import "./App.css";
+import uuid from "react-uuid";
+import { useState, useEffect } from "react";
 
-function App() {
+import Notes from "components/Notes";
+import Forecast from "components/Forecast";
+import AddNewNote from "components/AddNewNote";
+
+const notes = [
+  {
+    id: uuid(),
+    title: "Create new apps",
+    text: "Create a new portfolio app",
+    priority: "3",
+    date: "30.10.2022"
+  },
+  {
+    id: uuid(),
+    title: "Learn English",
+    text: "Do some exercise",
+    priority: "2",
+    date: "28.10.2022"
+  },
+  {
+    id: uuid(),
+    title: "Code review",
+    text: "",
+    priority: "1",
+    date: "29.10.2022"
+  },
+  {
+    id: uuid(),
+    title: "Reply to messages",
+    text: "Reply to messages in Telegram",
+    priority: "3",
+    date: "28.10.2022"
+  }
+];
+
+const cols = {
+  [uuid()]: {
+    name: "Requested",
+    items: notes
+  },
+  [uuid()]: {
+    name: "To do",
+    items: []
+  },
+  [uuid()]: {
+    name: "In Progress",
+    items: []
+  },
+  [uuid()]: {
+    name: "Done",
+    items: []
+  }
+};
+
+const App = () => {
+  const [columns, setColumns] = useState(cols);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="App_title">To-Do-List</h1>
+      <div>
+        <div>
+          <AddNewNote columns={columns} setColumns={setColumns} />
+          <Notes columns={columns} setColumns={setColumns} />
+        </div>
+
+        <Forecast />
+      </div>
     </div>
   );
-}
+};
 
 export default App;

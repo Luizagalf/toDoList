@@ -1,0 +1,85 @@
+.note {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.note-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: #456c86;
+  color: white;
+  border-radius: 8px;
+  width: max-content;
+  padding: 5px 8px;
+  margin: 0 auto;
+}
+
+.note-close:hover {
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 2px 8px rgba(0, 140, 255, 0.1);
+}
+
+.note-close_img {
+  height: 25px;
+  width: 25px;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(125deg)
+    brightness(103%) contrast(103%);
+}
+
+.note-close_title,
+.note-open_title {
+  margin: 0;
+}
+
+.note-open {
+  background-color: #456c86;
+  color: white;
+  border-radius: 8px;
+  width: max-content;
+  padding: 10px;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.note-open_title {
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  text-align: center;
+}
+
+.form-title,
+.form-text {
+  border-radius: 5px;
+  font-size: 1.17em;
+  border: 1px solid #f3f3f3;
+}
+
+.form-title:hover,
+.form-text:hover {
+  cursor: pointer;
+  background-color: #f3f3f3;
+}
+
+.form-title:focus,
+.form-text:focus {
+  box-shadow: none;
+  border: 1px solid #f3f3f3 !important;
+}
+
+.form-title {
+  text-align: center;
+}
+
+.form-text {
+  height: 100px;
+  resize: none;
+  padding: 2px 5px;
+}
