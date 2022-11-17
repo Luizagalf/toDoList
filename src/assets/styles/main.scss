@@ -1,0 +1,53 @@
+@import "assets/styles/colors.scss";
+@import "assets/styles/mixins.scss";
+@import "assets/styles/screen.scss";
+@import "assets/fonts/stylesheet.scss";
+
+button,
+input,
+div {
+  &:focus,
+  &:active,
+  &:active:focus,
+  &:focus:active,
+  &:visited {
+    outline: 0;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: $lightBlue;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: $darkGray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  box-shadow: inset 4px -4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px 4px 4px rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-resizer {
+  background-color: $darkBlue;
+}
+
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus,
+:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 35px white inset !important;
+  box-shadow: 0 0 0 35px white inset !important;
+}

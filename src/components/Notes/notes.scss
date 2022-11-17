@@ -1,3 +1,5 @@
+@import "src/assets/styles/main.scss";
+
 .notes {
   display: flex;
   justify-content: center;
@@ -14,8 +16,8 @@
 
 .notes_block__title {
   text-align: center;
-  background-color: lightgrey;
-  color: #013f4e;
+  background-color: $darkGray;
+  color: $darkBlue;
   width: 250px;
   padding: 5px;
   margin: 0;

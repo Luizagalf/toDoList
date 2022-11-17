@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import "./App.css";
+import "./app.scss";
 import uuid from "react-uuid";
 import { useState, useEffect } from "react";
 
@@ -18,7 +18,7 @@ const notes = [
   {
     id: uuid(),
     title: "Learn English",
-    text: "Do some exercise",
+    text: "Do some exercises",
     priority: "2",
     date: "28.10.2022"
   },

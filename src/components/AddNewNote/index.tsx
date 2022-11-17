@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import "./addNewNote.css";
+import "./addNewNote.scss";
 import { useState, useEffect } from "react";
-import plus from "img/plus.png";
+import plus from "assets/img/plus.png";
 import { Formik, Form, Field } from "formik";
 import uuid from "react-uuid";
 
@@ -30,8 +30,6 @@ type AddNewNoteProps = {
 
 const AddNewNote = ({ columns, setColumns }: AddNewNoteProps) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  var date = String(new Date().toLocaleDateString("ru-RU"));
 
   return (
     <div className="note">
@@ -80,18 +78,17 @@ const AddNewNote = ({ columns, setColumns }: AddNewNoteProps) => {
 
                 {values.date}
 
-                <div>
-                  <button
-                    type="submit"
-                    // disabled={!dirty}
-                    // onClick={(values) => handleSubmit(values)}
-                    onClick={() => {
-                      setIsOpen(!isOpen);
-                    }}
-                  >
-                    Add
-                  </button>
-                </div>
+                <button
+                  type="submit"
+                  // disabled={!dirty}
+                  // onClick={(values) => handleSubmit(values)}
+                  onClick={() => {
+                    setIsOpen(!isOpen);
+                  }}
+                  className="form-btn"
+                >
+                  Add
+                </button>
               </Form>
             )}
           </Formik>

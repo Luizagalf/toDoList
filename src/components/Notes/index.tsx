@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import "./notes.css";
+import "./notes.scss";
 import {
   DragDropContext,
   Droppable,
@@ -8,7 +8,7 @@ import {
   ResponderProvided
 } from "react-beautiful-dnd";
 import { useState, useEffect } from "react";
-import fire from "img/fire.svg";
+import fire from "assets/img/fire.svg";
 
 type Item = {
   id: string;
@@ -88,7 +88,7 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
               <div
                 style={{
                   height: "100%",
-                  opacity: column.items.length ? "1" : "0.9"
+                  opacity: column.items.length ? "1" : "0.7"
                 }}
               >
                 <Droppable droppableId={columnId} key={columnId}>
@@ -100,8 +100,8 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
                         className="notes_block__main"
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "darkgrey"
-                            : "lightgrey"
+                            ? "#e7e7e7"
+                            : "#d3d3d3"
                         }}
                       >
                         {column.items.map((item, index) => {

@@ -1,3 +1,5 @@
+@import "src/assets/styles/main.scss";
+
 .note {
   width: 100%;
   margin-bottom: 10px;
@@ -8,7 +10,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background-color: #456c86;
+  background-color: $lightBlue;
   color: white;
   border-radius: 8px;
   width: max-content;
@@ -34,13 +36,13 @@
 }
 
 .note-open {
-  background-color: #456c86;
+  background-color: $lightBlue;
   color: white;
   border-radius: 8px;
   width: max-content;
   padding: 10px;
   margin: 0 auto;
-  width: 300px;
+  width: 400px;
 }
 
 .note-open_title {
@@ -59,19 +61,19 @@
 .form-text {
   border-radius: 5px;
   font-size: 1.17em;
-  border: 1px solid #f3f3f3;
+  border: 1px solid $lightGray;
 }
 
 .form-title:hover,
 .form-text:hover {
   cursor: pointer;
-  background-color: #f3f3f3;
+  background-color: $lightGray;
 }
 
 .form-title:focus,
 .form-text:focus {
   box-shadow: none;
-  border: 1px solid #f3f3f3 !important;
+  border: 1px solid $lightGray !important;
 }
 
 .form-title {
@@ -82,4 +84,31 @@
   height: 100px;
   resize: none;
   padding: 2px 5px;
+}
+
+.form-btn {
+  background-color: $lightGray;
+  color: $darkBlue;
+  width: min-content;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 5px 49px;
+  border-radius: 6px;
+  border: none;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+
+  &:hover {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12), 0px 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  &:active {
+    box-shadow: inset 4px -4px 4px rgba(255, 255, 255, 0.5),
+      inset -4px 4px 4px rgba(255, 255, 255, 0.5);
+
+    &:focus {
+      box-shadow: inset 4px -4px 4px rgba(255, 255, 255, 0.5),
+        inset -4px 4px 4px rgba(255, 255, 255, 0.5);
+    }
+  }
 }
