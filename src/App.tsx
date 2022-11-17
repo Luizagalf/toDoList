@@ -61,8 +61,8 @@ const App = () => {
   const [columns, setColumns] = useState(cols);
 
   return (
-    <div className="App">
-      <h1 className="App_title">To-Do-List</h1>
+    <div className="app">
+      <h1 className="app_title">To-Do-List</h1>
       <div>
         <div>
           <AddNewNote columns={columns} setColumns={setColumns} />

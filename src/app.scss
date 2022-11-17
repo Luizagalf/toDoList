@@ -1,6 +1,8 @@
 @import "src/assets/styles/main.scss";
 
-.App {
+.app {
+  font-family: "Gilroy";
+  font-style: normal;
   display: flex;
   flex-direction: column;
   row-gap: 30px;
@@ -9,7 +11,7 @@
   height: 100vh;
 }
 
-.App_title {
+.app_title {
   margin: 0 auto;
   text-align: center;
 

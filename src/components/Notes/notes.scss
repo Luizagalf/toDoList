@@ -20,7 +20,6 @@
   color: $darkBlue;
   width: 250px;
   padding: 5px;
-  margin: 0;
   margin-bottom: 5px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06),
     0px 2px 8px rgba(0, 140, 255, 0.1);
@@ -39,7 +38,7 @@
 .block {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 10px;
   user-select: none;
   padding: 16px;
   margin: 0 0 8px;
@@ -48,23 +47,38 @@
   color: white;
 }
 
+.block_text {
+  @include text;
+}
+
 .block_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 5px;
+
+  & > svg {
+    cursor: pointer;
+    transition: all 0.4s ease;
+    filter: brightness(0) saturate(100%) invert(97%) sepia(0%) saturate(0%)
+      hue-rotate(56deg) brightness(102%) contrast(105%);
+    &:hover {
+      filter: brightness(0) saturate(100%) invert(100%) sepia(1%) saturate(263%)
+        hue-rotate(133deg) brightness(80%) contrast(91%);
+      transition: all 0.4s ease;
+    }
+  }
 }
 
-.block_header-title,
 .block_footer {
-  margin: 0;
-}
-
-.block_header-fire {
-  width: 24px;
-  height: 24px;
-}
-
-.block_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: end;
+
+  @include caption;
+  & img {
+    width: 24px;
+    height: 24px;
+  }
 }

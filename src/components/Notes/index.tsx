@@ -9,6 +9,7 @@ import {
 } from "react-beautiful-dnd";
 import { useState, useEffect } from "react";
 import fire from "assets/img/fire.svg";
+import { ReactComponent as IconClose } from "assets/img/iconClose.svg";
 
 type Item = {
   id: string;
@@ -126,14 +127,16 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
                                     }}
                                   >
                                     <div className="block_header">
-                                      <h3 className="block_header-title">
-                                        {item.title}
-                                      </h3>
-
+                                      <h3>{item.title}</h3>
+                                      <IconClose
+                                        onClick={() => console.log("delete")}
+                                      />
+                                    </div>
+                                    <p className="block_text">{item.text}</p>
+                                    <p className="block_footer">
                                       <img
                                         src={fire}
                                         alt="priority"
-                                        className="block_header-fire"
                                         style={{
                                           filter:
                                             item.priority === "3"
@@ -143,9 +146,8 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
                                               : "invert(98%) sepia(6%) saturate(2935%) hue-rotate(350deg) brightness(114%) contrast(105%)"
                                         }}
                                       />
-                                    </div>
-                                    <p>{item.text}</p>
-                                    <p className="block_footer">{item.date}</p>
+                                      {item.date}
+                                    </p>
                                   </div>
                                 );
                               }}
