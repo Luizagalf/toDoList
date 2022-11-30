@@ -33,7 +33,6 @@ class notesStore {
 
   setColsInLocalStorage = (value: Cols) => {
     localStorage.setItem("cols", JSON.stringify(value));
-    console.log(localStorage.getItem("cols"));
   };
 
   addNote(note: Note) {
