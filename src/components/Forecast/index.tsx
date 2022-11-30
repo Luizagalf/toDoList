@@ -1,5 +1,5 @@
 const Forecast = () => {
-  return <div>Прогноз погоды</div>;
+  return <div>Forecast</div>;
 };
 
 export default Forecast;

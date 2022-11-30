@@ -1,49 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import "./notes.scss";
 import {
   DragDropContext,
   Droppable,
   Draggable,
-  DropResult,
-  ResponderProvided
+  DropResult
 } from "react-beautiful-dnd";
-import { useState, useEffect } from "react";
 import fire from "assets/img/fire.svg";
 import { ReactComponent as IconClose } from "assets/img/iconClose.svg";
+import { Cols } from "types/Cols";
+import { observer } from "mobx-react-lite";
+import { useStores } from "stores";
 
-type Item = {
-  id: string;
-  title: string;
-  text: string;
-  priority: string;
-  date: string;
-};
+const Notes = () => {
+  const { notesStore } = useStores();
 
-type NotesProps = {
-  columns: {
-    [x: string]: {
-      name: string;
-      items: Item[];
-    };
-  };
-  setColumns: (el: {
-    [x: string]: {
-      name: string;
-      items: Item[];
-    };
-  }) => void;
-};
-
-const Notes = ({ columns, setColumns }: NotesProps) => {
-  const onDragEnd = (
-    result: DropResult,
-    columns: {
-      [x: string]: {
-        name: string;
-        items: Item[];
-      };
-    }
-  ) => {
+  const onDragEnd = (result: DropResult, columns: Cols) => {
     if (!result.destination) return;
     const { source, destination } = result;
 
@@ -54,7 +25,7 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
       destItems.splice(destination.index, 0, removed);
-      setColumns({
+      notesStore.setColumns({
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
@@ -70,7 +41,7 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      setColumns({
+      notesStore.setColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
@@ -79,10 +50,13 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
       });
     }
   };
+
   return (
     <div className="notes">
-      <DragDropContext onDragEnd={(result) => onDragEnd(result, columns)}>
-        {Object.entries(columns).map(([columnId, column]) => {
+      <DragDropContext
+        onDragEnd={(result) => onDragEnd(result, notesStore.columns)}
+      >
+        {Object.entries(notesStore.columns).map(([columnId, column]) => {
           return (
             <div className="notes_block" key={columnId}>
               <h2 className="notes_block__title">{column.name}</h2>
@@ -129,7 +103,12 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
                                     <div className="block_header">
                                       <h3>{item.title}</h3>
                                       <IconClose
-                                        onClick={() => console.log("delete")}
+                                        onClick={() =>
+                                          notesStore.deleteNote(
+                                            item.id,
+                                            columnId
+                                          )
+                                        }
                                       />
                                     </div>
                                     <p className="block_text">{item.text}</p>
@@ -168,4 +147,4 @@ const Notes = ({ columns, setColumns }: NotesProps) => {
   );
 };
 
-export default Notes;
+export default observer(Notes);

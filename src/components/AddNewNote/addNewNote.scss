@@ -30,10 +30,24 @@
     brightness(103%) contrast(103%);
 }
 
+.wrapper__note-open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+
+}
+
 .note-open {
   background-color: $lightBlue;
   color: white;
-  border-radius: 8px;
+  border-radius: 6px;
   width: max-content;
   padding: 15px 10px 20px;
   margin: 0 auto;
