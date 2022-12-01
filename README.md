@@ -2,7 +2,7 @@
 
 To do list with localStorage
 
-- Layout
+- Apative layout
 - Modal window with form and validation
 - Drag and drop notes
 - Adding/Saving/deleting notes in localStorage

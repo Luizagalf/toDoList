@@ -14,15 +14,10 @@ const AddNewNote = () => {
   const { notesStore } = useStores();
 
   useEffect(() => {
-    const appElement = document.getElementById("app") as HTMLElement;
-    let padding = appElement.style.paddingRight;
     if (isOpen) {
-      padding = appElement.style.paddingRight;
       document.body.style.overflow = "hidden";
-      appElement.style.paddingRight = `${Number(padding) + 10}px`;
     } else {
       document.body.style.overflow = "";
-      appElement.style.paddingRight = padding;
     }
   }, [isOpen]);
 
