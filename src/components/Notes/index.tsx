@@ -61,8 +61,8 @@ const Notes = () => {
             <div className="notes_block" key={columnId}>
               <h2 className="notes_block__title">{column.name}</h2>
               <div
+                className="wrapper__notes_block__main"
                 style={{
-                  height: "100%",
                   opacity: column.items.length ? "1" : "0.7"
                 }}
               >

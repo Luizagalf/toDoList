@@ -13,9 +13,10 @@
   background-color: $lightBlue;
   color: white;
   border-radius: 8px;
-  width: max-content;
   padding: 5px 8px;
   margin: 0 auto;
+  max-width: 174px;
+  width: 100%;
 }
 
 .note-close:hover {
@@ -41,7 +42,6 @@
   height: 100%;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.4);
-
 }
 
 .note-open {
@@ -175,5 +175,11 @@
       transition-duration: 0.4s;
       transform: scale(1.4);
     }
+  }
+}
+
+@media (max-width: $phone) {
+  .note-close {
+    padding: 5px 0;
   }
 }

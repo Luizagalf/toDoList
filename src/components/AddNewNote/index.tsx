@@ -15,12 +15,14 @@ const AddNewNote = () => {
 
   useEffect(() => {
     const appElement = document.getElementById("app") as HTMLElement;
+    let padding = appElement.style.paddingRight;
     if (isOpen) {
+      padding = appElement.style.paddingRight;
       document.body.style.overflow = "hidden";
-      appElement.style.paddingRight = "40px";
+      appElement.style.paddingRight = `${Number(padding) + 10}px`;
     } else {
       document.body.style.overflow = "";
-      appElement.style.paddingRight = "30px";
+      appElement.style.paddingRight = padding;
     }
   }, [isOpen]);
 
@@ -56,13 +58,24 @@ const AddNewNote = () => {
               }}
               validationSchema={validationSchema}
             >
-              {({ values, setFieldValue, isValid, handleSubmit, dirty }) => (
+              {({
+                values,
+                setFieldValue,
+                isValid,
+                handleSubmit,
+                dirty,
+                setFieldTouched
+              }) => (
                 <Form className="form" onSubmit={handleSubmit}>
                   <Field
                     name="title"
                     type="text"
                     className="form-title"
                     placeholder="Header"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      setFieldValue("title", event.target.value);
+                      setFieldTouched("title");
+                    }}
                   />
                   <Field
                     name="text"
@@ -70,6 +83,10 @@ const AddNewNote = () => {
                     as="textarea"
                     className="form-text"
                     placeholder="Description"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      setFieldValue("text", event.target.value);
+                      setFieldTouched("text");
+                    }}
                   />
                   <div className="form-footer">
                     <div className="form-footer__fires">
@@ -116,6 +133,9 @@ const AddNewNote = () => {
                     Add
                   </button>{" "}
                   <ErrorMessage name="title">
+                    {(msg) => <p className="form-title__error">{msg}</p>}
+                  </ErrorMessage>
+                  <ErrorMessage name="text">
                     {(msg) => <p className="form-title__error">{msg}</p>}
                   </ErrorMessage>
                 </Form>
