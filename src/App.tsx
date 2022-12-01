@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useStores } from "stores";
 
 import Notes from "components/Notes";
-// import Forecast from "components/Forecast";
 import AddNewNote from "components/AddNewNote";
 
 const App = () => {
@@ -14,15 +13,10 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app" id="app">
+    <div className="app">
       <h1 className="app_title">To Do List</h1>
-      <div>
-        <div>
-          <AddNewNote />
-          <Notes />
-        </div>
-        {/* <Forecast /> */}
-      </div>
+      <AddNewNote />
+      <Notes />
     </div>
   );
 };
