@@ -1,6 +1,6 @@
 # Description
 
-To do list with localStorage
+To do list with localStorage.
 
 - Apative layout
 - Modal window with form and validation
