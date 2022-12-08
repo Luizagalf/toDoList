@@ -24,11 +24,6 @@ type FormikFunctions = {
   isValid: boolean;
   handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
   dirty: boolean;
-  setFieldTouched: (
-    field: string,
-    isTouched?: boolean | undefined,
-    shouldValidate?: boolean | undefined
-  ) => void;
 };
 
 const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
@@ -73,8 +68,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
             setFieldValue,
             isValid,
             handleSubmit,
-            dirty,
-            setFieldTouched
+            dirty
           }: FormikFunctions): JSX.Element => (
             <Form className="note--open__form" onSubmit={handleSubmit}>
               <Field
@@ -84,7 +78,6 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
                 placeholder="Header"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setFieldValue("title", event.target.value);
-                  setFieldTouched("title");
                 }}
               />
               <Field
@@ -95,7 +88,6 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
                 placeholder="Description"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setFieldValue("text", event.target.value);
-                  setFieldTouched("text");
                 }}
               />
               <div className="note--open__form-footer">
