@@ -13,10 +13,16 @@ import { ReactComponent as IconClose } from "assets/img/iconClose.svg";
 import { Col, Cols } from "types/Cols";
 import { Note } from "types/Note";
 import { observer } from "mobx-react-lite";
-import { useStores } from "stores";
+import { useEffect, useContext } from "react";
+import { ServicesContext, StoresContext } from "context";
 
 const Notes = () => {
-  const { notesStore } = useStores();
+  const { notesStore } = useContext(StoresContext);
+  const { notesService } = useContext(ServicesContext);
+
+  useEffect(() => {
+    notesService.getItemsFromLocalStorage();
+  }, []);
 
   const onDragEnd = (result: DropResult, columns: Cols) => {
     if (!result.destination) return;
@@ -115,7 +121,7 @@ const Notes = () => {
                                         <h3>{item.title}</h3>
                                         <IconClose
                                           onClick={() =>
-                                            notesStore.deleteNote(
+                                            notesService.deleteNote(
                                               item.id,
                                               columnId
                                             )

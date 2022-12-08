@@ -1,13 +1,13 @@
 import "./addNewNoteForm.scss";
-import { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import uuid from "react-uuid";
 import { validationSchema } from "./validation";
 import fire from "assets/img/fire.svg";
 import { ReactComponent as IconClose } from "assets/img/iconClose.svg";
 import { observer } from "mobx-react-lite";
-import { useStores } from "stores";
 import { Note } from "types/Note";
+import { useEffect, useContext } from "react";
+import { ServicesContext } from "context";
 
 type ModalFormProps = {
   isOpen: boolean;
@@ -15,7 +15,7 @@ type ModalFormProps = {
 };
 
 const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
-  const { notesStore } = useStores();
+  const { notesService } = useContext(ServicesContext);
 
   useEffect(() => {
     if (isOpen) {
@@ -46,7 +46,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
           }}
           validateOnBlur
           onSubmit={(values: Note) => {
-            notesStore.addNote(values);
+            notesService.addNewNote(values);
             setIsOpen(!isOpen);
           }}
           validationSchema={validationSchema}

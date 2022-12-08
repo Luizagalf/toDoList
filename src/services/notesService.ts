@@ -41,8 +41,4 @@ export default class NotesService {
     this.notesStore.setColumns(newCols);
     this.setColsInLocalStorage(newCols);
   };
-
-  getColumns = (): Cols => {
-    return this.notesStore.getColumns();
-  };
 }
