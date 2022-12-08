@@ -10,28 +10,28 @@
   background-image: url("assets/img/table.jpeg");
   min-height: 100vh;
   background-size: 100% 400px;
-}
 
-.app_title {
-  margin: 0 auto;
-  text-align: center;
-  background-color: $darkGray;
-  color: $darkBlue;
-  max-width: 250px;
-  width: 100%;
-  padding: 10px 0;
-  margin-top: 30px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06),
-    0px 2px 8px rgba(0, 140, 255, 0.1);
-  border-radius: 8px;
+  &__title {
+    margin: 0 auto;
+    text-align: center;
+    background-color: $darkGray;
+    color: $darkBlue;
+    max-width: 250px;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06),
+      0px 2px 8px rgba(0, 140, 255, 0.1);
+    border-radius: 8px;
+  }
 }
 
 @media (max-width: #{$big-tablet + 1px}) and (min-width: #{$tablet + 1px}) {
   .app {
     padding: 0 20px;
-  }
-  .app_title {
-    margin-top: 20px;
+    &__title {
+      margin-top: 20px;
+    }
   }
 }
 
@@ -39,9 +39,9 @@
   .app {
     padding: 0 20px;
     background-size: 100% 300px;
-  }
-  .app_title {
-    margin-top: 20px;
+    &__title {
+      margin-top: 20px;
+    }
   }
 }
 
@@ -49,9 +49,8 @@
   .app {
     padding: 0 10px;
     background-size: 100% 300px;
-  }
-
-  .app_title {
-    margin-top: 10px;
+    &__title {
+      margin-top: 10px;
+    }
   }
 }

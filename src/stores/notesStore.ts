@@ -2,7 +2,6 @@ import { makeAutoObservable } from "mobx";
 import RootStore from "stores/index";
 import { Note } from "types/Note";
 import { Cols } from "types/Cols";
-
 class notesStore {
   rootStore: RootStore;
 
@@ -48,9 +47,7 @@ class notesStore {
     this.setColsInLocalStorage(this.columns);
   }
 
-  setColumns = (newCols: {
-    [key: string]: { name: string; items: Note[] };
-  }) => {
+  setColumns = (newCols: Cols) => {
     this.columns = newCols;
     this.setColsInLocalStorage(this.columns);
   };

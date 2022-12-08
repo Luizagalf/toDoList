@@ -7,17 +7,12 @@
   height: 100%;
   min-height: 500px;
   margin-bottom: 30px;
-}
 
-.wrapper__notes_block__main {
-  height: 100%;
-  min-height: 200px;
-}
-
-.notes_block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   &__title {
     text-align: center;
@@ -31,7 +26,12 @@
     border-radius: 8px;
   }
 
-  &__main {
+  &__notions-container {
+    height: 100%;
+    min-height: 200px;
+  }
+
+  &__notion {
     padding: 4px;
     width: 250px;
     height: 100%;
@@ -39,65 +39,65 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06),
       0px 2px 8px rgba(0, 140, 255, 0.1);
     border-radius: 8px;
-  }
-}
 
-.block {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  user-select: none;
-  padding: 16px;
-  margin: 0 0 8px;
-  min-height: 50px;
-  border-radius: 8px;
-  color: white;
+    &-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      user-select: none;
+      padding: 16px;
+      margin: 0 0 8px;
+      min-height: 50px;
+      border-radius: 8px;
+      color: white;
+    }
 
-  &_text {
-    @include text;
-    word-break: break-word;
-  }
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
 
-  &_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
+      & > h3 {
+        word-break: break-word;
+      }
 
-    & > h3 {
+      & > svg {
+        cursor: pointer;
+        transition: all 0.4s ease;
+        filter: brightness(0) saturate(100%) invert(97%) sepia(0%) saturate(0%)
+          hue-rotate(56deg) brightness(102%) contrast(105%);
+        &:hover {
+          filter: brightness(0) saturate(100%) invert(100%) sepia(1%)
+            saturate(263%) hue-rotate(133deg) brightness(80%) contrast(91%);
+          transition: all 0.4s ease;
+        }
+      }
+    }
+
+    &-text {
+      @include text;
       word-break: break-word;
     }
 
-    & > svg {
-      cursor: pointer;
-      transition: all 0.4s ease;
-      filter: brightness(0) saturate(100%) invert(97%) sepia(0%) saturate(0%)
-        hue-rotate(56deg) brightness(102%) contrast(105%);
-      &:hover {
-        filter: brightness(0) saturate(100%) invert(100%) sepia(1%)
-          saturate(263%) hue-rotate(133deg) brightness(80%) contrast(91%);
-        transition: all 0.4s ease;
+    &-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: end;
+
+      @include caption;
+      & img {
+        width: 24px;
+        height: 24px;
       }
-    }
-  }
-
-  &_footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: end;
-
-    @include caption;
-    & img {
-      width: 24px;
-      height: 24px;
     }
   }
 }
 
 @media (min-width: $large-desktop) {
-  .notes_block {
-    &__main,
+  .notes {
+    &__notion,
     &__title {
       width: 300px;
     }
@@ -105,8 +105,8 @@
 }
 
 @media (max-width: #{$large-desktop - 1px}) and (min-width: $big-tablet) {
-  .notes_block {
-    &__main,
+  .notes {
+    &__notion,
     &__title {
       width: 250px;
     }
@@ -117,9 +117,8 @@
   .notes {
     flex-wrap: wrap;
     margin-bottom: 20px;
-  }
-  .notes_block {
-    &__main,
+
+    &__notion,
     &__title {
       width: 250px;
     }
@@ -127,8 +126,8 @@
 }
 
 @media (max-width: $desktop) and (min-width: #{$big-tablet + 1px}) {
-  .notes_block {
-    &__main,
+  .notes {
+    &__notion,
     &__title {
       width: 200px;
     }
@@ -136,8 +135,8 @@
 }
 
 @media (max-width: $big-tablet) {
-  .notes_block {
-    &__main,
+  .notes {
+    &__notion,
     &__title {
       width: 290px;
     }
@@ -145,8 +144,8 @@
 }
 
 @media (max-width: #{$big-tablet + 1px}) and (min-width: #{$small-tablet + 1px}) {
-  .notes_block {
-    &__main,
+  .notes {
+    &__notion,
     &__title {
       width: 290px;
     }
@@ -158,9 +157,7 @@
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;
-  }
-  .notes_block {
-    &__main,
+    &__notion,
     &__title {
       width: 350px;
     }
@@ -168,17 +165,18 @@
 }
 
 @media (max-width: $phone) {
-  .wrapper__notes_block__main,
-  .notes_block {
-    width: 100%;
-  }
   .notes {
     margin-bottom: 10px;
-  }
-  .notes_block {
-    &__main,
+
+    &__block,
+    &__notion,
+    &__notions-container,
     &__title {
       width: 100%;
+    }
+
+    &__notion,
+    &__title {
       max-width: calc(100% - 8px);
     }
   }
