@@ -20,10 +20,6 @@ class notesStore {
     }
   };
 
-  getColumns = (): Cols => {
-    return this.columns;
-  };
-
   setColumns = (newCols: Cols): void => {
     this.columns = newCols;
   };

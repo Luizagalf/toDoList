@@ -1,36 +1,35 @@
 import { Note } from "types/Note";
 import { Cols } from "types/Cols";
 import NotesStore from "stores/notesStore";
-
+import INotesProvider from "providers/notesProvider";
 export default class NotesService {
-  constructor(private notesStore: NotesStore) {}
+  constructor(
+    private notesStore: NotesStore,
+    private notesProvider: INotesProvider
+  ) {}
 
   getItemsFromLocalStorage = (): void => {
-    if (localStorage.getItem("cols") !== null) {
-      this.notesStore.setColumns(
-        JSON.parse(localStorage.getItem("cols") as string)
-      );
-    }
+    this.notesStore.setColumns(this.notesProvider.getItemsFromLocalStorage());
   };
 
   setColsInLocalStorage = (value: Cols): void => {
-    localStorage.setItem("cols", JSON.stringify(value));
+    this.notesProvider.setColsInLocalStorage(value);
   };
 
   addNewNote = (note: Note): void => {
-    const newCols: Cols = this.notesStore.getColumns();
+    const newCols: Cols = this.notesStore.columns;
     newCols["requested"]["items"].push(note);
     this.notesStore.setColumns(newCols);
     this.setColsInLocalStorage(newCols);
   };
 
   deleteNote = (id: string, colId: string): void => {
-    const newCols: Cols = this.notesStore.getColumns();
-    const newNotesList: Note[] = this.notesStore
-      .getColumns()
-      [colId]["items"].filter((note) => {
+    const newCols: Cols = this.notesStore.columns;
+    const newNotesList: Note[] = this.notesStore.columns[colId]["items"].filter(
+      (note) => {
         return note["id"] !== id;
-      });
+      }
+    );
 
     newCols[colId]["items"] = newNotesList;
     this.notesStore.setColumns(newCols);

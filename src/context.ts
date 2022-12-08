@@ -2,11 +2,11 @@ import { createContext, Context } from "react";
 
 import NotesStore from "stores/notesStore";
 import NotesService from "services/notesService";
+import NotesProvider from "providers/notesProvider";
 
 export interface IStoresContext {
   notesStore: NotesStore;
 }
-
 export interface IServicesContext {
   notesService: NotesService;
 }
@@ -27,7 +27,7 @@ export function initContextsValues() {
   };
 
   const services: IServicesContext = {
-    notesService: new NotesService(stores.notesStore)
+    notesService: new NotesService(stores.notesStore, new NotesProvider())
   };
 
   return {

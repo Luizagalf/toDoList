@@ -6,7 +6,9 @@ import {
   DraggableStateSnapshot,
   DropResult,
   DraggableProvided,
-  DraggableLocation
+  DraggableLocation,
+  DroppableProvided,
+  DroppableStateSnapshot
 } from "react-beautiful-dnd";
 import fire from "assets/img/fire.svg";
 import { ReactComponent as IconClose } from "assets/img/iconClose.svg";
@@ -36,7 +38,7 @@ const Notes = () => {
       const destItems: Note[] = [...destColumn.items];
       const [removed]: Note[] = sourceItems.splice(source.index, 1);
       destItems.splice(destination.index, 0, removed);
-      notesStore.setColumns({
+      notesService.setColumns({
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
@@ -52,7 +54,7 @@ const Notes = () => {
       const copiedItems: Note[] = [...column.items];
       const [removed]: Note[] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      notesStore.setColumns({
+      notesService.setColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
@@ -70,7 +72,7 @@ const Notes = () => {
         }
       >
         {Object.entries(notesStore.columns).map(
-          ([columnId, column]: [string, Col]) => {
+          ([columnId, column]: [string, Col]): JSX.Element => {
             return (
               <div className="notes__block" key={columnId}>
                 <h2 className="notes__title">{column.name}</h2>
@@ -81,7 +83,10 @@ const Notes = () => {
                   }}
                 >
                   <Droppable droppableId={columnId} key={columnId}>
-                    {(provided, snapshot) => {
+                    {(
+                      provided: DroppableProvided,
+                      snapshot: DroppableStateSnapshot
+                    ): JSX.Element => {
                       return (
                         <div
                           {...provided.droppableProps}
@@ -93,65 +98,67 @@ const Notes = () => {
                               : "#d3d3d3"
                           }}
                         >
-                          {column.items.map((item: Note, index: number) => {
-                            return (
-                              <Draggable
-                                key={item.id}
-                                draggableId={item.id}
-                                index={index}
-                              >
-                                {(
-                                  provided: DraggableProvided,
-                                  snapshot: DraggableStateSnapshot
-                                ) => {
-                                  return (
-                                    <div
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      className="notes__notion-block"
-                                      style={{
-                                        backgroundColor: snapshot.isDragging
-                                          ? "#263B4A"
-                                          : "#456C86",
-                                        ...provided.draggableProps.style
-                                      }}
-                                    >
-                                      <div className="notes__notion-header">
-                                        <h3>{item.title}</h3>
-                                        <IconClose
-                                          onClick={() =>
-                                            notesService.deleteNote(
-                                              item.id,
-                                              columnId
-                                            )
-                                          }
-                                        />
+                          {column.items.map(
+                            (item: Note, index: number): JSX.Element => {
+                              return (
+                                <Draggable
+                                  key={item.id}
+                                  draggableId={item.id}
+                                  index={index}
+                                >
+                                  {(
+                                    provided: DraggableProvided,
+                                    snapshot: DraggableStateSnapshot
+                                  ) => {
+                                    return (
+                                      <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        className="notes__notion-block"
+                                        style={{
+                                          backgroundColor: snapshot.isDragging
+                                            ? "#263B4A"
+                                            : "#456C86",
+                                          ...provided.draggableProps.style
+                                        }}
+                                      >
+                                        <div className="notes__notion-header">
+                                          <h3>{item.title}</h3>
+                                          <IconClose
+                                            onClick={() =>
+                                              notesService.deleteNote(
+                                                item.id,
+                                                columnId
+                                              )
+                                            }
+                                          />
+                                        </div>
+                                        <p className="notes__notion-text">
+                                          {item.text}
+                                        </p>
+                                        <p className="notes__notion-footer">
+                                          <img
+                                            src={fire}
+                                            alt="priority"
+                                            style={{
+                                              filter:
+                                                item.priority === "3"
+                                                  ? "invert(11%) sepia(91%) saturate(6739%) hue-rotate(8deg) brightness(80%) contrast(114%)"
+                                                  : item.priority === "2"
+                                                  ? "invert(55%) sepia(88%) saturate(1894%) hue-rotate(359deg) brightness(100%) contrast(105%)"
+                                                  : "invert(98%) sepia(6%) saturate(2935%) hue-rotate(350deg) brightness(114%) contrast(105%)"
+                                            }}
+                                          />
+                                          {item.date}
+                                        </p>
                                       </div>
-                                      <p className="notes__notion-text">
-                                        {item.text}
-                                      </p>
-                                      <p className="notes__notion-footer">
-                                        <img
-                                          src={fire}
-                                          alt="priority"
-                                          style={{
-                                            filter:
-                                              item.priority === "3"
-                                                ? "invert(11%) sepia(91%) saturate(6739%) hue-rotate(8deg) brightness(80%) contrast(114%)"
-                                                : item.priority === "2"
-                                                ? "invert(55%) sepia(88%) saturate(1894%) hue-rotate(359deg) brightness(100%) contrast(105%)"
-                                                : "invert(98%) sepia(6%) saturate(2935%) hue-rotate(350deg) brightness(114%) contrast(105%)"
-                                          }}
-                                        />
-                                        {item.date}
-                                      </p>
-                                    </div>
-                                  );
-                                }}
-                              </Draggable>
-                            );
-                          })}
+                                    );
+                                  }}
+                                </Draggable>
+                              );
+                            }
+                          )}
                           {provided.placeholder}
                         </div>
                       );

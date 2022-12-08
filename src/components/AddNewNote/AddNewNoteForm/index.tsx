@@ -14,6 +14,23 @@ type ModalFormProps = {
   setIsOpen: (el: boolean) => void;
 };
 
+type FormikFunctions = {
+  values: Note;
+  setFieldValue: (
+    field: string,
+    value: any,
+    shouldValidate?: boolean | undefined
+  ) => void;
+  isValid: boolean;
+  handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
+  dirty: boolean;
+  setFieldTouched: (
+    field: string,
+    isTouched?: boolean | undefined,
+    shouldValidate?: boolean | undefined
+  ) => void;
+};
+
 const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
   const { notesService } = useContext(ServicesContext);
 
@@ -45,7 +62,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
             date: String(new Date().toLocaleDateString("ru-RU"))
           }}
           validateOnBlur
-          onSubmit={(values: Note) => {
+          onSubmit={(values: Note): void => {
             notesService.addNewNote(values);
             setIsOpen(!isOpen);
           }}
@@ -58,7 +75,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
             handleSubmit,
             dirty,
             setFieldTouched
-          }) => (
+          }: FormikFunctions): JSX.Element => (
             <Form className="note--open__form" onSubmit={handleSubmit}>
               <Field
                 name="title"
@@ -126,10 +143,14 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
                 Add
               </button>
               <ErrorMessage name="title">
-                {(msg) => <p className="note--open__form-error">{msg}</p>}
+                {(msg: string) => (
+                  <p className="note--open__form-error">{msg}</p>
+                )}
               </ErrorMessage>
               <ErrorMessage name="text">
-                {(msg) => <p className="note--open__form-error">{msg}</p>}
+                {(msg: string) => (
+                  <p className="note--open__form-error">{msg}</p>
+                )}
               </ErrorMessage>
             </Form>
           )}
