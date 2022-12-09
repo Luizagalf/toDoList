@@ -4,7 +4,7 @@ import AddNewNote from "components/AddNewNote";
 import { initContextsValues, StoresContext, ServicesContext } from "./context";
 const contexts = initContextsValues();
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <div className="app">
       <h1 className="app__title">To Do List</h1>

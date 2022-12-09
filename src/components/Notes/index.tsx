@@ -18,7 +18,7 @@ import { observer } from "mobx-react-lite";
 import { useEffect, useContext } from "react";
 import { ServicesContext, StoresContext } from "context";
 
-const Notes = () => {
+const Notes = (): JSX.Element => {
   const { notesStore } = useContext(StoresContext);
   const { notesService } = useContext(ServicesContext);
 
@@ -67,7 +67,7 @@ const Notes = () => {
   return (
     <div className="notes">
       <DragDropContext
-        onDragEnd={(result: DropResult) =>
+        onDragEnd={(result: DropResult): void =>
           onDragEnd(result, notesStore.columns)
         }
       >
@@ -126,7 +126,7 @@ const Notes = () => {
                                         <div className="notes__notion-header">
                                           <h3>{item.title}</h3>
                                           <IconClose
-                                            onClick={() =>
+                                            onClick={(): void =>
                                               notesService.deleteNote(
                                                 item.id,
                                                 columnId

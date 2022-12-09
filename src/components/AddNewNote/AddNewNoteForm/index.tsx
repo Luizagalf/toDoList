@@ -26,10 +26,10 @@ type FormikFunctions = {
   dirty: boolean;
 };
 
-const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
+const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps): JSX.Element => {
   const { notesService } = useContext(ServicesContext);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -43,7 +43,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
         <div className="note--open__title">
           <h3>Add new note</h3>
           <IconClose
-            onClick={() => {
+            onClick={(): void => {
               setIsOpen(false);
             }}
           />
@@ -101,7 +101,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
                         "invert(11%) sepia(91%) saturate(6739%) hue-rotate(8deg) brightness(80%) contrast(114%)",
                       transform: values.priority === "1" ? "scale(1.2)" : ""
                     }}
-                    onClick={() => setFieldValue("priority", "1")}
+                    onClick={(): void => setFieldValue("priority", "1")}
                   />
                   <img
                     src={fire}
@@ -111,7 +111,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
                         "invert(55%) sepia(88%) saturate(1894%) hue-rotate(359deg) brightness(100%) contrast(105%)",
                       transform: values.priority === "2" ? "scale(1.4)" : ""
                     }}
-                    onClick={() => setFieldValue("priority", "2")}
+                    onClick={(): void => setFieldValue("priority", "2")}
                   />
                   <img
                     src={fire}
@@ -121,7 +121,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps) => {
                         "invert(98%) sepia(6%) saturate(2935%) hue-rotate(350deg) brightness(114%) contrast(105%)",
                       transform: values.priority === "3" ? "scale(1.2)" : ""
                     }}
-                    onClick={() => setFieldValue("priority", "3")}
+                    onClick={(): void => setFieldValue("priority", "3")}
                   />
                 </div>
 
