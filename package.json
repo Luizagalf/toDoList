@@ -10,6 +10,7 @@
     "@types/node": "^16.18.2",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
+    "express": "^4.18.2",
     "formik": "^2.2.9",
     "lodash": "^4.17.21",
     "mobx": "^6.7.0",
@@ -20,17 +21,17 @@
     "react-scripts": "5.0.1",
     "react-uuid": "^2.0.0",
     "sass": "^1.56.1",
+    "serve-static": "^1.15.0",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
   "scripts": {
-    "serve": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "npm run build",
-    "start": "node server.js"
+    "postinstall": "npm run build"
   },
   "eslintConfig": {
     "extends": [
