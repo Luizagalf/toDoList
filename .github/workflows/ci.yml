@@ -26,11 +26,19 @@ jobs:
           CI: false
         run: npm ci
       - name: Build the app
+        env:
+          CI: false
         run: npm run build
       - name: Run component tests
+        env:
+          CI: false
         run: npm run test
       - name: Start the app
+        env:
+          CI: false
         run: npm start &
           npx wait-on --timeout 60000
       - name: Run visual tests
+        env:
+          CI: false
         run: npm run test:visual
