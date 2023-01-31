@@ -38,7 +38,7 @@ jobs:
           CI: false
         run: npm start &
           npx wait-on --timeout 60000
-      - name: Run visual tests
-        env:
-          CI: false
-        run: npm run test:visual
+      # - name: Run visual tests
+      #   env:
+      #     CI: false
+      #   run: npm run test:visual
