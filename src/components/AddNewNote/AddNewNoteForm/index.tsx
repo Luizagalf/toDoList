@@ -79,6 +79,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps): JSX.Element => {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setFieldValue("title", event.target.value);
                 }}
+                data-testid="form-input-Header"
               />
               <Field
                 name="text"
@@ -89,6 +90,7 @@ const AddNewNoteForm = ({ isOpen, setIsOpen }: ModalFormProps): JSX.Element => {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setFieldValue("text", event.target.value);
                 }}
+                data-testid="form-input-Description"
               />
               <div className="note--open__form-footer">
                 <div className="note--open__form-fires">
